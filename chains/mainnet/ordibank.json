@@ -1,0 +1,32 @@
+{
+  "chain_name": "ordibank",
+  "api": [
+    {
+      "address": "https://testnet-api.ordibank.org",
+      "provider": "Ordibank"
+    }],
+  "rpc": [
+    {
+      "address": "https://testnet-rpc.ordibank.org",
+        "provider": "Ordibank"
+    }],
+  "grpc": [
+    {
+      "address": "http://52.14.229.245:9090",
+        "provider": "Ordibank"
+    }
+  ],
+  "addr_prefix": "ordi",
+  "sdk_version": "0.50.7",
+  "coin_type": "118",
+  "min_tx_fee": "0",
+  "theme_color": "#ce4747",
+  "logo": "/logos/osmosis.jpg",
+  "assets": [{
+    "base": "uORBK",
+    "symbol": "ORBK",
+    "exponent": "6",
+    "coingecko_id": "",
+    "logo": "/logos/osmosis.jpg"
+  }]
+}

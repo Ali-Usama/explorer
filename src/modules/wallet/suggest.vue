@@ -20,10 +20,12 @@ const chains = computed(() => {
 
 onMounted(() => {
     const chainStore = useBlockchain()
+    console.log("onMounted hook")
     selected.value = chainStore.current || Object.values(dashboard.chains)[0]
     initParamsForKeplr()
 
     dashboard.loadLocalConfig(NetworkType.Mainnet).then((res) => {
+      console.log("loadLocalConfig Mainnet", res)
         mainnet.value = Object.values<ChainConfig>(res)
     })
     dashboard.loadLocalConfig(NetworkType.Testnet).then((res) => {

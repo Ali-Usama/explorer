@@ -190,6 +190,7 @@ export function fromLocal(lc: LocalConfig): ChainConfig {
   conf.keplrPriceStep = lc.keplr_price_step;
   conf.themeColor = lc.theme_color;
   conf.faucet = lc.faucet;
+  console.log("fromLocal conf: ", conf)
   return conf;
 }
 
@@ -282,7 +283,7 @@ export const useDashboard = defineStore('dashboard', {
     );
     return {
       status: LoadingStatus.Empty,
-      source: ConfigSource.MainnetCosmosDirectory,
+      source: ConfigSource.TestnetCosmosDirectory,
       networkType: NetworkType.Mainnet,
       favoriteMap: favMap as Record<string, boolean>,
       chains: {} as Record<string, ChainConfig>,
@@ -344,6 +345,7 @@ export const useDashboard = defineStore('dashboard', {
           ? import.meta.glob('../../chains/mainnet/*.json', { eager: true })
           : import.meta.glob('../../chains/testnet/*.json', { eager: true });
       Object.values<LocalConfig>(source).forEach((x: LocalConfig) => {
+        console.log("loadingFromLocal Chain Name: ", x.chain_name)
         this.chains[x.chain_name] = fromLocal(x);
       });
       this.setupDefault();
@@ -356,6 +358,7 @@ export const useDashboard = defineStore('dashboard', {
           ? import.meta.glob('../../chains/mainnet/*.json', { eager: true })
           : import.meta.glob('../../chains/testnet/*.json', { eager: true });
       Object.values<LocalConfig>(source).forEach((x: LocalConfig) => {
+        console.log("loadLocalConfig Chain Name: ", x.chain_name)
         config[x.chain_name] = fromLocal(x);
       });
       return config

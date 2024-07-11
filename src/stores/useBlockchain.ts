@@ -55,6 +55,7 @@ export const useBlockchain = defineStore('blockchain', {
     },
     defaultHDPath(): string {
       const cointype = this.current?.coinType || '118';
+      console.log("defaultHDPath coinType: ", cointype)
       return `m/44'/${cointype}/0'/0/0`;
     },
     dashboard() {
@@ -107,6 +108,7 @@ export const useBlockchain = defineStore('blockchain', {
       const favNavItems: VerticalNavItems = [];
       Object.keys(this.dashboard.favoriteMap).forEach((name) => {
         const ch = this.dashboard.chains[name];
+        console.log("computedChainView ch: ", ch)
         if (ch && this.dashboard.favoriteMap?.[name]) {
           favNavItems.push({
             title: ch.prettyName || ch.chainName || name,
@@ -157,6 +159,7 @@ export const useBlockchain = defineStore('blockchain', {
 
     randomEndpoint(chainName: string) : Endpoint | undefined {
       const end = localStorage.getItem(`endpoint-${chainName}`);
+      console.log("randomEndpoint end: ", end)
       if (end) {
         return JSON.parse(end);
       } else {
@@ -171,6 +174,7 @@ export const useBlockchain = defineStore('blockchain', {
 
     async randomSetupEndpoint() {
       const endpoint = this.randomEndpoint(this.chainName)
+      console.log("randomSetupEndpoint endpoint: ", endpoint)
       if(endpoint) await this.setRestEndpoint(endpoint);
     },
 

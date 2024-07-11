@@ -198,14 +198,14 @@ export function findApiProfileBySDKVersion(
 
   for (const k in VERSION_REGISTRY) {
     const key = k.replace('v', "")
-    // console.log(semver.gt(key, version), semver.gte(version, key), key, version)
+    console.log(semver.gt(key, version), semver.gte(version, key), key, version)
     if (semver.lte(key, version)) {
       if (!closestVersion || semver.gt(key, closestVersion)) {
         closestVersion = k;
       }
     }
   }
-  // console.log(`Closest version to ${version}: ${closestVersion}`, VERSION_REGISTRY);
+  console.log(`Closest version to ${version}: ${closestVersion}`, VERSION_REGISTRY);
   if (!closestVersion) {
     return undefined;
   }

@@ -54,6 +54,8 @@ export class CosmosRestClient extends BaseRestClient<RequestRegistry> {
     if(chain) {
       // find by name first
       req = findApiProfileByChain(chain.chainName)
+      console.log("CosmosRestClient -> newStrategy -> chain.chainName", chain.chainName)
+      console.log("CosmosRestClient -> newStrategy -> req", req)
       // if not found. try sdk version
       if(!req && chain.versions?.cosmosSdk) {
         req = findApiProfileBySDKVersion(localStorage.getItem(`sdk_version_${chain.chainName}`) || chain.versions?.cosmosSdk)

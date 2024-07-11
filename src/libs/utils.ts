@@ -7,6 +7,7 @@ export function getLocalObject(name: string) {
 }
 
 export function getLocalChains() {
+  console.log('getLocalChains called')
   return 'osmosis';
 }
 
