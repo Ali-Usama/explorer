@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+  ordibank-explorer:
+    image: ordibank-explorer
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "5173:5173"
