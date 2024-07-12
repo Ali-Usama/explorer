@@ -21,12 +21,12 @@
   "coin_type": "118",
   "min_tx_fee": "0",
   "theme_color": "#ce4747",
-  "logo": "/logos/osmosis.jpg",
+  "logo": "https://imgur.com/a/joVZEFx",
   "assets": [{
     "base": "uORBK",
     "symbol": "ORBK",
     "exponent": "6",
     "coingecko_id": "",
-    "logo": "/logos/osmosis.jpg"
+    "logo": "https://imgur.com/a/joVZEFx"
   }]
 }
