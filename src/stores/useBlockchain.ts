@@ -51,6 +51,7 @@ export const useBlockchain = defineStore('blockchain', {
       return chain;
     },
     logo(): string {
+      console.log("logo current: ", this.current?.logo)
       return this.current?.logo || '';
     },
     defaultHDPath(): string {

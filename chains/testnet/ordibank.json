@@ -21,12 +21,11 @@
   "coin_type": "118",
   "min_tx_fee": "0",
   "theme_color": "#ce4747",
-  "logo": "https://imgur.com/a/joVZEFx",
+  "logo": "https://i.imgur.com/awwv4Nu.png",
   "assets": [{
     "base": "uORBK",
     "symbol": "ORBK",
     "exponent": "6",
-    "coingecko_id": "",
-    "logo": "https://imgur.com/a/joVZEFx"
+    "coingecko_id": ""
   }]
 }
