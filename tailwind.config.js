@@ -31,6 +31,8 @@ module.exports = {
           'base-200': '#252d37',
           'base-300': '#131F23',
           'blue-400': '#28B2FA',
+          'green-500': '#12A50A',
+          'text-white': '#ffffff',
         },
       },
     ],
