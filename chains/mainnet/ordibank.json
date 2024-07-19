@@ -1,6 +1,6 @@
 {
   "chain_name": "ordibank",
-  "registry_name": "BankHub",
+  "registry_name": "OrdiBank",
   "api": [
     {
       "address": "https://testnet-api.ordibank.org",

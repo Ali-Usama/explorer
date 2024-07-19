@@ -107,34 +107,8 @@ dayjs()
             'collapse-close': index === 0 && !sidebarOpen,
           }"
         >
-          <input
-            v-if="index > 0"
-            type="checkbox"
-            class="cursor-pointer !h-10 block"
-            @click="changeOpen(index)"
-          />
-          <div
-            class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-          >
-            <Icon
-              v-if="item?.icon?.icon"
-              :icon="item?.icon?.icon"
-              class="text-xl mr-2"
-              :class="{
-                'text-yellow-500': item?.title === 'Favorite',
-                'text-blue-500': item?.title !== 'Favorite',
-              }"
-            />
-            <img
-              v-if="item?.icon?.image"
-              :src="item?.icon?.image"
-              class="w-6 h-6 rounded-full mr-3"
-            />
-            <div
-              class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap"
-            >
-              {{ item?.title }}
-            </div>
+          <div>
+      
             <div
               v-if="item?.badgeContent"
               class="mr-6 badge badge-sm text-white border-none"
@@ -154,16 +128,7 @@ dayjs()
                 }"
                 :to="el.to"
               >
-                <Icon
-                  v-if="!el?.icon?.image"
-                  icon="mdi:chevron-right"
-                  class="mr-2 ml-3"
-                  :class="{
-                    'text-white':
-                      $route.path === el?.to?.path &&
-                      item?.title !== 'Favorite',
-                  }"
-                />
+              
                 <img
                   v-if="el?.icon?.image"
                   :src="el?.icon?.image"
@@ -259,14 +224,14 @@ dayjs()
         </div>
 
         <!-- <ChainProfile /> -->
+        <NavbarSearch class="!inline-block" />
 
         <div class="flex-1 w-0"></div>
 
         <!-- <NavSearchBar />-->
         <NavBarI18n class="hidden md:!inline-block" />
         <NavbarThemeSwitcher class="!inline-block" />
-        <NavbarSearch class="!inline-block" />
-        <NavBarWallet />
+        <!-- <NavBarWallet /> -->
       </div>
 
       <!-- 👉 Pages -->
