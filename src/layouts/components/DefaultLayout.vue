@@ -72,10 +72,10 @@ dayjs()
 </script>
 
 <template>
-  <div class="bg-gray-100 dark:bg-[#171d30]">
+  <div class="bg-gray-100 dark:bg-base-300">
     <!-- sidebar -->
     <div
-      class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-gray-100 dark:border-gray-700"
+      class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto border-r border-gray-100 dark:bg-blue-400"
       :class="{ block: sidebarShow, 'hidden xl:!block': !sidebarShow }"
     >
       <div class="flex justify-between mt-1 pl-4 py-4 mb-1">
@@ -117,8 +117,8 @@ dayjs()
               {{ item?.badgeContent }}
             </div>
           </div>
-          <div class="collapse-content">            
-            <div v-for="(el, key) of item?.children" class="menu bg-base-100 w-full !p-0">
+          <div class="collapse-content">
+            <div v-for="(el, key) of item?.children" class="menu w-full !p-0 dark:bg-base-400">
               <RouterLink
                 v-if="isNavLink(el)"
                 @click="sidebarShow = false"
