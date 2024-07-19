@@ -33,14 +33,14 @@ export interface DirectoryChain {
   denom: string;
   display: string;
   explorers:
-    | {
-        name?: string | undefined;
-        kind?: string | undefined;
-        url?: string | undefined;
-        tx_page?: string | undefined;
-        account_page?: string | undefined;
-      }[]
-    | undefined;
+  | {
+    name?: string | undefined;
+    kind?: string | undefined;
+    url?: string | undefined;
+    tx_page?: string | undefined;
+    account_page?: string | undefined;
+  }[]
+  | undefined;
   height: number;
   image: string;
   name: string;
@@ -85,7 +85,7 @@ export interface ChainConfig {
     low: number,
     average: number,
     high: number,
-  },  
+  },
   faucet?: {
     amount: string,
     ip_limit: number,
@@ -151,7 +151,7 @@ function apiConverter(api: any[]) {
 
 export function fromLocal(lc: LocalConfig): ChainConfig {
   const conf = {} as ChainConfig;
-  if(lc.assets && Array.isArray(lc.assets)) {
+  if (lc.assets && Array.isArray(lc.assets)) {
     conf.assets = lc.assets.map((x) => ({
       name: x.base,
       base: x.base,
@@ -179,13 +179,13 @@ export function fromLocal(lc: LocalConfig): ChainConfig {
     rpc: apiConverter(lc.rpc),
     grpc: apiConverter(lc.grpc),
   };
-  if(lc.provider_chain) {
+  if (lc.provider_chain) {
     conf.providerChain = {
       api: apiConverter(lc.provider_chain.api)
     }
   }
   conf.features = lc.features
-  conf.logo = lc.logo.startsWith('http') ? lc.logo : `https://ping.pub${lc.logo}`;
+  conf.logo = lc.logo.startsWith('http') ? lc.logo : lc.logo;
   conf.keplrFeatures = lc.keplr_features;
   conf.keplrPriceStep = lc.keplr_price_step;
   conf.themeColor = lc.theme_color;
@@ -225,10 +225,10 @@ function pathConvert(path: string | undefined) {
 export function getLogo(
   conf:
     | {
-        svg?: string;
-        png?: string;
-        jpeg?: string;
-      }
+      svg?: string;
+      png?: string;
+      jpeg?: string;
+    }
     | undefined
 ) {
   if (conf) {
@@ -279,7 +279,7 @@ export const useDashboard = defineStore('dashboard', {
   state: () => {
     const favMap = JSON.parse(
       localStorage.getItem('favoriteMap') ||
-        '{"cosmos":true, "osmosis":true}'
+      '{"cosmos":true, "osmosis":true}'
     );
     return {
       status: LoadingStatus.Empty,
@@ -288,7 +288,7 @@ export const useDashboard = defineStore('dashboard', {
       favoriteMap: favMap as Record<string, boolean>,
       chains: {} as Record<string, ChainConfig>,
       prices: {} as Record<string, any>,
-      coingecko: {} as Record<string, {coinId: string, exponent: number, symbol: string}>,
+      coingecko: {} as Record<string, { coinId: string, exponent: number, symbol: string }>,
     };
   },
   getters: {
@@ -306,8 +306,8 @@ export const useDashboard = defineStore('dashboard', {
       const keys = Object.keys(this.chains) // load all blockchain
       // Object.keys(this.favoriteMap) //only load favorite once it has too many chains
       keys.forEach(k => {
-        if(Array.isArray(this.chains[k]?.assets)) this.chains[k].assets.forEach(a => {
-          if(a.coingecko_id !== undefined && a.coingecko_id.length > 0) {
+        if (Array.isArray(this.chains[k]?.assets)) this.chains[k].assets.forEach(a => {
+          if (a.coingecko_id !== undefined && a.coingecko_id.length > 0) {
             coinIds.push(a.coingecko_id)
             a.denom_units.forEach(u => {
               this.coingecko[u.denom] = {
@@ -316,7 +316,7 @@ export const useDashboard = defineStore('dashboard', {
                 symbol: a.symbol
               }
             })
-          } 
+          }
         })
       })
 
@@ -337,7 +337,7 @@ export const useDashboard = defineStore('dashboard', {
       }
     },
     async loadingFromLocal() {
-      if(window.location.hostname.search("testnet") > -1) {
+      if (window.location.hostname.search("testnet") > -1) {
         this.networkType = NetworkType.Testnet
       }
       const source: Record<string, LocalConfig> =
@@ -352,7 +352,7 @@ export const useDashboard = defineStore('dashboard', {
       this.status = LoadingStatus.Loaded;
     },
     async loadLocalConfig(network: NetworkType) {
-      const config: Record<string, ChainConfig> = {} 
+      const config: Record<string, ChainConfig> = {}
       const source: Record<string, LocalConfig> =
         network === NetworkType.Mainnet
           ? import.meta.glob('../../chains/mainnet/*.json', { eager: true })

@@ -129,19 +129,19 @@ async function initSnap() {
     }, null, '\t')
 }
 
-function suggest() {
-    if(wallet.value === "keplr") {
-        // @ts-ignore
-        if (window.keplr) {
-            // @ts-ignore
-            window.keplr.experimentalSuggestChain(JSON.parse(conf.value)).catch(e => {
-                error.value = e
-            })
-        }
-    } else {
-        suggestChain(JSON.parse(conf.value));
-    }
-}
+// function suggest() {
+//     if(wallet.value === "keplr") {
+//         // @ts-ignore
+//         if (window.keplr) {
+//             // @ts-ignore
+//             window.keplr.experimentalSuggestChain(JSON.parse(conf.value)).catch(e => {
+//                 error.value = e
+//             })
+//         }
+//     } else {
+//         suggestChain(JSON.parse(conf.value));
+//     }
+// }
 
 </script>
 
@@ -165,7 +165,7 @@ function suggest() {
         </div>
         <div class="mt-4 mb-4">
 
-            <button class="btn !bg-primary !border-primary text-white mr-2" @click="suggest">Suggest {{ selected.chainName }} TO {{ wallet }}</button>
+            <!-- <button class="btn !bg-primary !border-primary text-white mr-2" @click="suggest">Suggest {{ selected.chainName }} TO {{ wallet }}</button> -->
 
             <div class="mt-4">
                 If the chain is not offically support on Keplr/Metamask Snap, you can submit these parameters to enable Keplr/Metamask Snap.

@@ -24,14 +24,14 @@
   "coin_type": "118",
   "min_tx_fee": "0",
   "theme_color": "#28b2fa",
-  "logo": "/assets/logo.svg",
+  "logo": "src/assets/logo.svg",
   "assets": [
     {
       "base": "uORBK",
       "symbol": "ORBK",
       "exponent": "6",
       "coingecko_id": "ordibank",
-      "logo": "/assets/logo.svg"
+      "logo": "src/assets/logo.svg"
     }
   ]
 }
