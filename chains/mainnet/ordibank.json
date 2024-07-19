@@ -1,0 +1,37 @@
+{
+  "chain_name": "ordibank",
+  "registry_name": "BankHub",
+  "api": [
+    {
+      "address": "https://testnet-api.ordibank.org",
+      "provider": "Ordibank"
+    }
+  ],
+  "rpc": [
+    {
+      "address": "https://testnet-rpc.ordibank.org",
+      "provider": "Ordibank"
+    }
+  ],
+  "grpc": [
+    {
+      "address": "http://52.14.229.245:9090",
+      "provider": "Ordibank"
+    }
+  ],
+  "addr_prefix": "ordi",
+  "sdk_version": "0.50.7",
+  "coin_type": "118",
+  "min_tx_fee": "0",
+  "theme_color": "#28b2fa",
+  "logo": "/assets/logo.svg",
+  "assets": [
+    {
+      "base": "uORBK",
+      "symbol": "ORBK",
+      "exponent": "6",
+      "coingecko_id": "ordibank",
+      "logo": "/assets/logo.svg"
+    }
+  ]
+}
