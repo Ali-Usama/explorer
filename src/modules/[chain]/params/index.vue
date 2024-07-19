@@ -52,11 +52,11 @@ onMounted(() => {
   </div>
 </template>
 
-<route>
+<!-- <route>
 {
   meta: {
     i18n: 'parameters',
     order: 50
   }
 }
-</route>
+</route> -->

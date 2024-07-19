@@ -492,14 +492,14 @@ loadAvatars();
 </div>
 </template>
 
-<route>
+<!-- <route>
   {
     meta: {
       i18n: 'staking',
       order: 3
     }
   }
-</route>
+</route> -->
 
 <style>
 .staking-table.table :where(th, td) {

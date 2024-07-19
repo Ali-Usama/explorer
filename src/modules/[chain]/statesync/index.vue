@@ -112,10 +112,10 @@ onMounted(() => {
   </div>
 </template>
 
-<route>
+<!-- <route>
     {
       meta: {
         i18n: 'state-sync'
       }
     }
-  </route>
+  </route> -->

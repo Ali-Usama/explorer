@@ -55,11 +55,11 @@ const hdPath = computed(() => {
   </div>
 </template>
 
-<route>
+<!-- <route>
     {
       meta: {
         i18n: 'widget',
         order: 300
       }
     }
-</route>
+</route> -->

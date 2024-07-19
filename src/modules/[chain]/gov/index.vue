@@ -42,11 +42,11 @@ function page(p: number) {
         <PaginationBar :total="store?.proposals[tab]?.pagination?.total" :limit="pageRequest.limit" :callback="page" />
     </div>
 </template>
-<route>
+<!-- <route>
   {
     meta: {
       i18n: 'governance',
       order: 2
     }
   }
-</route>
+</route> -->
