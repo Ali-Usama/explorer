@@ -19,6 +19,29 @@ import CardStatisticsVertical from '@/components/CardStatisticsVertical.vue';
 import ProposalListItem from '@/components/ProposalListItem.vue';
 import ArrayObjectElement from '@/components/dynamic/ArrayObjectElement.vue'
 import AdBanner from '@/components/ad/AdBanner.vue';
+import {
+  useDashboard,
+  LoadingStatus,
+  type ChainConfig,
+} from '@/stores/useDashboard';
+import ChainSummary from '@/components/ChainSummary.vue';
+
+const dashboard = useDashboard();
+
+const keywords = ref('');
+const chains = computed(() => {
+  if (keywords.value) {
+    const lowercaseKeywords = keywords.value.toLowerCase();
+
+    return Object.values(dashboard.chains).filter(
+      (x: ChainConfig) => x.chainName.toLowerCase().indexOf(lowercaseKeywords) > -1
+        || x.prettyName.toLowerCase().indexOf(lowercaseKeywords) > -1
+    );
+  } else {
+    return Object.values(dashboard.chains);
+  }
+});
+
 
 const props = defineProps(['chain']);
 
@@ -127,6 +150,12 @@ const amount = computed({
 
 <template>
   <div>
+    <div
+      v-if="dashboard.status !== LoadingStatus.Loaded"
+      class="flex justify-center"
+    >
+      <progress class="progress progress-info w-80 h-1"></progress>
+    </div>
     <div v-if="coinInfo && coinInfo.name" class="bg-base-100 rounded shadow">
       <div class="grid grid-cols-2 md:grid-cols-3 p-4">
         <div class="col-span-2 md:col-span-1">
