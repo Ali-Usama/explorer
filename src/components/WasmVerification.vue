@@ -161,8 +161,6 @@ function callFunction(title: string, method: string, arg: Argument) {
     }
   })
 
-  //console.log("args", arg.properties, JSON.stringify(args))
-
   if(title === 'ExecuteMsg') {
     let execution = {} as Record<string, any>
     execution[method] = args 
