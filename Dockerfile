@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN yarn set version stable
-
-RUN yarn
+RUN yarn install
 
 COPY . .
 

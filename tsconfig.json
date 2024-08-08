@@ -1,8 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ],
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
+    // "ignoreDeprecations": "5.0",
     "lib": [      
       "es2022",
       "dom"
@@ -12,10 +18,4 @@
       "@/*": ["./src/*"]
     }
   },
-
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
-  ]
 }
