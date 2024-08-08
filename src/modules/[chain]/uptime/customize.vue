@@ -127,7 +127,7 @@ function color(v: string) {
     <div class="overflow-x-auto w-full">
       <div class="lg:!flex lg:!items-center lg:!justify-between bg-base-100 dark:bg-[#211f1f] p-5">
         <div class="min-w-0 flex-1">
-          <h2 class="text-2xl font-bold leading-7 sm:!truncate sm:!text-3xl sm:!tracking-tight">{{ $t('uptime.my_validators') }}</h2>
+          <h2 class="dark:text-white text-2xl font-bold leading-7 sm:!truncate sm:!text-3xl sm:!tracking-tight">{{ $t('uptime.my_validators') }}</h2>
           <div class="mt-1 flex flex-col sm:!mt-0 sm:!flex-row sm:!flex-wrap sm:!space-x-6">
             <div class="mt-2 flex items-center text-sm text-gray-500">
               <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
@@ -186,17 +186,22 @@ function color(v: string) {
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="add-validator" class="modal-toggle" @change="initial" />
     <div class="modal">
-      <div class="modal-box relative">
-        <label for="add-validator" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      <div class="modal-box relative bg-white dark:bg-[#211f1f]">
+        <label for="add-validator" class="btn btn-sm btn-circle absolute right-4 top-3">✕</label>
         <h3 class="text-lg font-bold">{{ $t('uptime.add_validators') }}</h3>
-          <div class="form-control my-5 border-2">
+          <div class="form-control my-5">
             <div class="input-group input-group-md">
-            <select v-model="selectChain" class="select select-bordered capitalize" @change="changeChain">
-              <option v-for="v in dashboard.chains" :value="v.chainName">
+            <select v-model="selectChain" class="select !border-gray-800 !border-opacity-20 capitalize dark:bg-[#1b1b1b] focus:!outline-none" @change="changeChain">
+              <option v-for="v in dashboard.chains" :value="v.chainName" class="!h-10">
                 {{ v.chainName }}
               </option>
             </select>
-              <input v-model="keyword" type="text" class="input w-full" placeholder="keywords to filter validator">
+              <input 
+                v-model="keyword" 
+                type="text" 
+                class="input w-full border !border-gray-800 !border-opacity-20 dark:bg-[#1b1b1b]" 
+                placeholder="keywords to filter validator"
+              />
             </div>
           </div>
         <div class="py-4 max-h-60 overflow-y-auto">
