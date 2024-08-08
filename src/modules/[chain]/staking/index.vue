@@ -224,12 +224,12 @@ loadAvatars();
 </script>
 <template>
 <div>
-    <div class="bg-base-100 rounded-lg grid sm:grid-cols-1 md:grid-cols-4 p-4" >    
+    <div class="bg-base-100 dark:bg-[#211f1f] rounded-lg grid sm:grid-cols-1 md:grid-cols-4 p-4" >    
         <div class="flex">
             <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+                <div class="relative w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center mr-2">
                     <Icon class="text-success" icon="mdi:trending-up" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-success"></div>
+                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-success rounded-lg"></div>
                 </div>
             </span>
             <span>
@@ -239,9 +239,9 @@ loadAvatars();
         </div>
         <div class="flex">
             <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+                <div class="relative w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center mr-2">
                     <Icon class="text-primary" icon="mdi:lock-open-outline" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-primary"></div>
+                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-primary rounded-lg"></div>
                 </div>
             </span>
             <span>
@@ -251,9 +251,9 @@ loadAvatars();
         </div> 
         <div class="flex">
             <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+                <div class="relative w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center mr-2">
                     <Icon class="text-error" icon="mdi:alert-octagon-outline" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
+                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error rounded-lg"></div>
                 </div>
             </span>
             <span>
@@ -263,9 +263,9 @@ loadAvatars();
         </div> 
         <div class="flex">
             <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
+                <div class="relative w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center mr-2">
                     <Icon class="text-error" icon="mdi:pause" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
+                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error rounded-lg"></div>
                 </div>
             </span>
             <span>
@@ -303,7 +303,7 @@ loadAvatars();
             </div>
         </div>
 
-        <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
+        <div class="bg-base-100 dark:bg-[#211f1f] px-4 pt-3 pb-4 rounded shadow">
             <div class="overflow-x-auto">
                 <table class="table staking-table w-full">
                     <thead class=" bg-base-200">

@@ -9,8 +9,10 @@ import ChainRegistryClient from '@ping-pub/chain-registry-client';
 import type { IBCPath } from '@ping-pub/chain-registry-client/dist/types';
 import router from '@/router';
 import { useIBCModule } from './connStore';
+import { useRoute } from 'vue-router';
 
 const props = defineProps(['chain']);
+const route = useRoute()
 const chainStore = useBlockchain();
 const ibcStore = useIBCModule()
 const list = ref([] as Connection[]);
@@ -37,7 +39,7 @@ function pageload(p: number) {
 </script>
 <template>
   <div>
-    <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
+    <div class="bg-base-100 dark:bg-[#211f1f] px-4 pt-3 pb-4 rounded shadow">
       <div class="flex flex-wrap gap-4  items-center">
         <h2 class="card-title py-4">{{ $t('ibc.title') }}</h2>
         <div class="tabs tabs-boxed">
@@ -60,7 +62,7 @@ function pageload(p: number) {
         </div>
       </div>
       <div class="overflow-auto mt-5">
-        <router-view :key="$route.fullPath"></router-view>
+        <router-view :key="route.fullPath"></router-view>
       </div>
     </div>
   </div>

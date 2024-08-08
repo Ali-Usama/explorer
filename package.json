@@ -75,6 +75,5 @@
     "vite-plugin-pages": "^0.28.0",
     "vue-json-viewer": "3",
     "vue-tsc": "^1.0.12"
-  },
-  "packageManager": "yarn@4.3.1"
+  }
 }

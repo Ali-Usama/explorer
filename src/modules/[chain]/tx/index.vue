@@ -28,15 +28,15 @@ function search() {
 <template>
     <div>
         <div class="tabs tabs-boxed bg-transparent mb-4">
-            <a class="tab text-gray-400 uppercase" :class="{ 'tab-active': tab === 'recent' }"
+            <a class="tab text-gray-400 uppercase" :class="{ 'tab-active !text-white': tab === 'recent' }"
                 @click="tab = 'recent'">{{ $t('block.recent') }}</a>
-            <a class="tab text-gray-400 uppercase" :class="{ 'tab-active': tab === 'search' }"
+            <a class="tab text-gray-400 uppercase" :class="{ 'tab-active !text-white': tab === 'search' }"
                 @click="tab = 'search'">Search</a>
         </div>
 
-        <div v-show="tab === 'recent'" class="bg-base-100 rounded overflow-x-auto">
+        <div v-show="tab === 'recent'" class="bg-base-100 dark:bg-[#211f1f] rounded overflow-x-auto">
             <table class="table w-full table-compact">
-                <thead class="bg-base-200">
+                <thead class="bg-base-200 dark:bg-[#1e1e1e]">
                     <tr>
                         <th style="position: relative; z-index: 2;">{{ $t('account.height') }}</th>
                         <th style="position: relative; z-index: 2;">{{ $t('account.hash') }}</th>
@@ -60,7 +60,7 @@ function search() {
                 </tbody>
             </table>
             <div class="p-4">
-                <div class="alert relative bg-transparent">
+                <div class="alert relative bg-transparent border-none">
                     <div class="alert  absolute inset-x-0 inset-y-0 w-full h-full bg-info opacity-10"></div>
                     <div class="text-info flex gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -74,10 +74,16 @@ function search() {
             </div>
         </div>
 
-        <div v-show="tab === 'search'" class="bg-base-100 rounded overflow-x-auto">
+        <div v-show="tab === 'search'" class="bg-base-100 dark:bg-[#211f1f] rounded overflow-x-auto">
             <div class="p-4">
                 <div class="form-control">
-                    <input v-model="hash" type="text" class="input input-bordered" placeholder="Search by Tx Hash" @blur="search"/>
+                    <input 
+                        v-model="hash" 
+                        type="text" 
+                        class="input input-bordered dark:bg-[#211f1f]" 
+                        placeholder="Search by Tx Hash" 
+                        @blur="search"
+                    />
                 </div>
             </div>
         </div>

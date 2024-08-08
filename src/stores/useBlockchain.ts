@@ -88,7 +88,7 @@ export const useBlockchain = defineStore('blockchain', {
             badgeContent: this.isConsumerChain ? 'Consumer' : undefined,
             badgeClass: 'bg-error',
             children: routes
-              .filter((x) => x.meta.i18n) // defined menu name
+              .filter((x) => x.meta.i18n && x.meta.i18n !== 'blocks') // defined menu name
               .filter(
                 (x) =>
                   !this.current?.features ||
@@ -105,6 +105,8 @@ export const useBlockchain = defineStore('blockchain', {
           },
         ];
       }
+
+      console.log("===currNavItem===", currNavItem)
       // compute favorite menu
       const favNavItems: VerticalNavItems = [];
       Object.keys(this.dashboard.favoriteMap).forEach((name) => {

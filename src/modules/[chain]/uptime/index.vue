@@ -180,18 +180,18 @@ function fetchAllKeyRotation() {
 <template>
   <div>
     <div class="tabs tabs-boxed bg-transparent mb-4">
-      <a class="tab text-gray-400 capitalize" :class="{ 'tab-active': tab === '3' }" @click="changeTab('3')">{{
+      <a class="tab text-gray-400 capitalize" :class="{ 'tab-active !text-white': tab === '3' }" @click="changeTab('3')">{{
         $t('uptime.overall') }}</a>
-      <a class="tab text-gray-400 capitalize" :class="{ 'tab-active': tab === '2' }" @click="changeTab('2')">{{
+      <a class="tab text-gray-400 capitalize" :class="{ 'tab-active !text-white': tab === '2' }" @click="changeTab('2')">{{
         $t('module.blocks') }}</a>
       <RouterLink :to="`/${chain}/uptime/customize`">
         <a class="tab text-gray-400 capitalize">{{ $t('uptime.customize') }}</a>
       </RouterLink>
     </div>
-    <div class="bg-base-100 px-5 pt-5">
+    <div class="bg-base-100 dark:bg-[#211f1f] px-5 pt-5">
       <div class="flex items-center gap-x-4">
         <input type="text" v-model="keyword" placeholder="Keywords to filter validators"
-          class="input input-sm w-full flex-1 border border-gray-200 dark:border-gray-600" />
+          class="input input-sm w-full flex-1 border !border-gray-500 !border-opacity-20 dark:bg-transparent" />
         <button v-if="chainStore.isConsumerChain" class="btn btn-sm btn-primary" @click="fetchAllKeyRotation">Load
           Rotated Keys</button>
       </div>
@@ -229,7 +229,7 @@ function fetchAllKeyRotation() {
 
       <div :class="tab === '3' ? '' : 'hidden'" class="overflow-x-auto">
         <table class="table table-compact w-full mt-5">
-          <thead class="capitalize bg-base-200">
+          <thead class="capitalize bg-base-200 dark:bg-[#1e1e1e]">
             <tr>
               <td>{{ $t('account.validator') }}</td>
               <td class="text-right">{{ $t('module.uptime') }}</td>

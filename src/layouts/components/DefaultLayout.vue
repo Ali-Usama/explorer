@@ -1,87 +1,14 @@
-<script lang="ts" setup>
-import { Icon } from '@iconify/vue';
-import { computed, ref } from 'vue';
-
-// Components
-import newFooter from '@/layouts/components/NavFooter.vue';
-import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue';
-import NavbarSearch from '@/layouts/components/NavbarSearch.vue';
-import ChainProfile from '@/layouts/components/ChainProfile.vue';
-
-import { NetworkType, useDashboard } from '@/stores/useDashboard';
-import { useBaseStore, useBlockchain } from '@/stores';
-
-import NavBarI18n from './NavBarI18n.vue';
-import NavBarWallet from './NavBarWallet.vue';
-import type { NavGroup, NavLink, NavSectionTitle, VerticalNavItems } from '../types';
-import dayjs from 'dayjs';
-
-const dashboard = useDashboard();
-dashboard.initial();
-const blockchain = useBlockchain();
-blockchain.randomSetupEndpoint();
-const baseStore = useBaseStore();
-
-const current = ref(''); // the current chain
-const temp = ref('')
-blockchain.$subscribe((m, s) => {
-  if(current.value ===s.chainName && temp.value != s.endpoint.address) {
-    temp.value = s.endpoint.address
-    blockchain.initial();
-  }
-  if (current.value != s.chainName) {
-    current.value = s.chainName;
-    blockchain.randomSetupEndpoint();
-  }
-});
-
-const sidebarShow = ref(false);
-const sidebarOpen = ref(true);
-
-const changeOpen = (index: Number) => {
-  if (index === 0) {
-    sidebarOpen.value = !sidebarOpen.value;
-  }
-};
-const showDiscord = window.location.host.search('ping.pub') > -1;
-
-function isNavGroup(nav: VerticalNavItems | any): nav is NavGroup {
-   return (<NavGroup>nav).children !== undefined;
-}
-function isNavLink(nav: VerticalNavItems | any): nav is NavLink {
-   return (<NavLink>nav).to !== undefined;
-}
-function isNavTitle(nav: VerticalNavItems | any): nav is NavSectionTitle {
-   return (<NavSectionTitle>nav).heading !== undefined;
-}
-function selected(route: any, nav: NavLink) {
-  const b = route.path === nav.to?.path || route.path.startsWith(nav.to?.path) && nav.title.indexOf('dashboard') === -1
-  return b
-}
-const blocktime = computed(() => {
-  return dayjs(baseStore.latest?.block?.header?.time)
-});
-
-const behind = computed(() => {
-  const current = dayjs().subtract(10, 'minute')
-  return blocktime.value.isBefore(current)
-});
-
-dayjs()
-
-</script>
-
 <template>
-  <div class="bg-gray-100 dark:bg-[#131f23]">
+  <div class="bg-gray-100 dark:bg-[#1b1b1b]">
     <!-- sidebar -->
     <div
-      class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 border-r border-gray-100 dark:border-gray-700"
+      class="w-64 fixed z-50 left-0 top-0 bottom-0 overflow-auto bg-base-100 dark:bg-[#1e1e1e]"
       :class="{ block: sidebarShow, 'hidden xl:!block': !sidebarShow }"
     >
       <div class="flex justify-between mt-1 pl-4 py-4 mb-1">
         <RouterLink to="/" class="flex items-center">
           <img class="w-10 h-10" src="../../assets/logo.svg" />
-          <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
+          <h1 class="flex-1 ml-3 text-2xl f-medium font-semibold dark:text-white">
             OrdiBank
           </h1>
         </RouterLink>
@@ -95,12 +22,11 @@ dayjs()
       <div
         v-for="(item, index) of blockchain.computedChainMenu"
         :key="index"
-        class="px-2"
       >
         <div
           v-if="isNavGroup(item)"
           :tabindex="index"
-          class="collapse"
+          class="collapse rounded-none"
           :class="{
             'collapse-arrow':index > 0 && item?.children?.length > 0,
             'collapse-open': index === 0 && sidebarOpen,
@@ -108,23 +34,22 @@ dayjs()
           }"
         >
           <div>
-      
             <div
               v-if="item?.badgeContent"
-              class="mr-6 badge badge-sm text-white border-none"
+              class="mr-6 badge badge-sm text-white dark:text-zinc-900 border-none"
               :class="item?.badgeClass"
             >
               {{ item?.badgeContent }}
             </div>
           </div>
-          <div class="collapse-content">            
-            <div v-for="(el, key) of item?.children" class="menu bg-base-100 w-full !p-0">
+          <div class="collapse-content px-0">            
+            <div v-for="(el, key) of item?.children" class="menu bg-base-100 dark:bg-transparent w-full !p-0">
               <RouterLink
                 v-if="isNavLink(el)"
                 @click="sidebarShow = false"
-                class="hover:bg-gray-100 dark:hover:bg-[#373f59] rounded cursor-pointer px-3 py-2 flex items-center"
+                class="hover:bg-gray-100 dark:hover:bg-[#262525] cursor-pointer px-6 py-[10px] flex items-center"
                 :class="{
-                  '!bg-primary': selected($route, el),
+                  'bg-gray-200 dark:bg-[#262525]': selected(route, el),
                 }"
                 :to="el.to"
               >
@@ -133,13 +58,14 @@ dayjs()
                   v-if="el?.icon?.image"
                   :src="el?.icon?.image"
                   class="w-6 h-6 rounded-full mr-3 ml-4 " :class="{
-                  'border border-gray-300 bg-white': selected($route, el),
+                  'border border-gray-300 bg-white': selected(route, el),
                 }"
                 />
+                <!-- class="text-gray-500 dark:text-gray-300" -->
                 <div
-                  class="text-base capitalize text-gray-500 dark:text-gray-300"
+                  class="text-base capitalize bg-[linear-gradient(180deg,_rgba(0,_0,_0,_0.40)0%,_rgba(153,_153,_153,_0.40)100%)] dark:bg-[linear-gradient(180deg,_rgba(255,_255,_255,_0.40)0%,_rgba(153,_153,_153,_0.40)100%)] text-transparent bg-clip-text"
                   :class="{
-                    '!text-white': selected($route, el),
+                    '!text-gray-800 dark:!text-white': selected(route, el),
                   }"
                 >
                   {{ item?.title === 'Favorite' ? el?.title : $t(el?.title) }}
@@ -211,10 +137,10 @@ dayjs()
       </div>
 
     </div>
-    <div class="xl:!ml-64 px-3 pt-4">
+    <div class="xl:!ml-64 px-3 pt-4 min-h-screen">
       <!-- header -->
       <div
-        class="flex items-center py-3 bg-base-100 mb-4 rounded px-4 sticky top-0 z-10"
+        class="flex items-center py-3 bg-base-100 dark:bg-[#211f1f] mb-4 rounded px-4 sticky top-0 z-10"
       >
         <div
           class="text-2xl pr-3 cursor-pointer xl:!hidden"
@@ -257,3 +183,82 @@ dayjs()
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+  import { Icon } from '@iconify/vue';
+  import { computed, ref } from 'vue';
+
+  // Components
+  import newFooter from '@/layouts/components/NavFooter.vue';
+  import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue';
+  import NavbarSearch from '@/layouts/components/NavbarSearch.vue';
+  import ChainProfile from '@/layouts/components/ChainProfile.vue';
+
+  import { NetworkType, useDashboard } from '@/stores/useDashboard';
+  import { useBaseStore, useBlockchain } from '@/stores';
+
+  import NavBarI18n from './NavBarI18n.vue';
+  import NavBarWallet from './NavBarWallet.vue';
+  import type { NavGroup, NavLink, NavSectionTitle, VerticalNavItems } from '../types';
+  import dayjs from 'dayjs';
+import { useRoute } from 'vue-router';
+
+  const route = useRoute()
+  console.log(" ===route====>", route)
+  const dashboard = useDashboard();
+  dashboard.initial();
+  const blockchain = useBlockchain();
+  blockchain.randomSetupEndpoint();
+  const baseStore = useBaseStore();
+
+  const current = ref(''); // the current chain
+  const temp = ref('')
+  blockchain.$subscribe((m, s) => {
+    if(current.value ===s.chainName && temp.value != s.endpoint.address) {
+      temp.value = s.endpoint.address
+      blockchain.initial();
+    }
+    if (current.value != s.chainName) {
+      current.value = s.chainName;
+      blockchain.randomSetupEndpoint();
+    }
+  });
+
+  const sidebarShow = ref(false);
+  const sidebarOpen = ref(true);
+
+  const changeOpen = (index: Number) => {
+    if (index === 0) {
+      sidebarOpen.value = !sidebarOpen.value;
+    }
+  };
+  const showDiscord = window.location.host.search('ping.pub') > -1;
+
+  function isNavGroup(nav: VerticalNavItems | any): nav is NavGroup {
+    return (<NavGroup>nav).children !== undefined;
+  }
+  function isNavLink(nav: VerticalNavItems | any): nav is NavLink {
+    return (<NavLink>nav).to !== undefined;
+  }
+  function isNavTitle(nav: VerticalNavItems | any): nav is NavSectionTitle {
+    return (<NavSectionTitle>nav).heading !== undefined;
+  }
+  function selected(route: any, nav: NavLink) {
+    // console.log('route ===', route)
+    // console.log('nav ===', nav)
+    const b = route.path === nav.to?.path || route.path.startsWith(nav.to?.path) && nav.title.indexOf('dashboard') === -1
+    // const b = route.path === nav.to?.path || nav.title.indexOf('dashboard') === -1
+    return b
+  }
+  const blocktime = computed(() => {
+    return dayjs(baseStore.latest?.block?.header?.time)
+  });
+
+  const behind = computed(() => {
+    const current = dayjs().subtract(10, 'minute')
+    return blocktime.value.isBefore(current)
+  });
+
+  dayjs()
+</script>
+
