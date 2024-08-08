@@ -3,6 +3,9 @@
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
   "compilerOptions": {
     // "ignoreDeprecations": "5.0",
+    "preserveValueImports": false,
+    "importsNotUsedAsValues": "remove",
+    "verbatimModuleSyntax": true,
     "composite": true,
     "types": ["node"]
   }

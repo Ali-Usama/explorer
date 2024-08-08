@@ -1,5 +1,6 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
+  // "extends": "@vue/tsconfig/tsconfig.json",
+  "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
 
   "references": [
@@ -9,6 +10,9 @@
   ],
   "compilerOptions": {
     // "ignoreDeprecations": "5.0",
+    "preserveValueImports": false,
+    "importsNotUsedAsValues": "remove",
+    "verbatimModuleSyntax": true,
     "lib": [      
       "es2022",
       "dom"
