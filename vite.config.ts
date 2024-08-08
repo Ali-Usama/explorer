@@ -8,7 +8,9 @@ import DefineOptions from 'unplugin-vue-define-options/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import Pages from 'vite-plugin-pages';
 
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
+// import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
+// import { createI18n } from 'vue-i18n/dist/vue-i18n'
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -47,15 +49,15 @@ export default defineConfig({
       ],
       vueTemplate: true,
     }),
-    VueI18nPlugin({
-      runtimeOnly: true,
-      compositionOnly: true,
-      include: [
-        fileURLToPath(
-          new URL('./src/plugins/i18n/locales/**', import.meta.url)
-        ),
-      ],
-    }),
+    // VueI18nPlugin({
+    //   runtimeOnly: true,
+    //   compositionOnly: true,
+    //   include: [
+    //     fileURLToPath(
+    //       new URL('./src/plugins/i18n/locales/**', import.meta.url)
+    //     ),
+    //   ],
+    // }),
     DefineOptions(),
   ],
   resolve: {
